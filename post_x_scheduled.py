@@ -4,7 +4,8 @@ post_x_scheduled.py
 GitHub Actions / Windows タスクスケジューラーから呼び出される自動投稿スクリプト。
 毎日1本ずつ順番に投稿し、15本でループする。
 """
-import json, sys, datetime
+import json, sys, datetime, os
+import urllib.request
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -24,6 +25,24 @@ def log(msg):
     print(line, flush=True)
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(line + "\n")
+
+
+def send_line(msg: str):
+    token = os.getenv("LINE_TOKEN", "")
+    user_id = os.getenv("LINE_USER_ID", "")
+    if not token or not user_id:
+        return
+    try:
+        body = json.dumps({"to": user_id, "messages": [{"type": "text", "text": msg}]}).encode("utf-8")
+        req = urllib.request.Request(
+            "https://api.line.me/v2/bot/message/push",
+            data=body,
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {token}"},
+            method="POST",
+        )
+        urllib.request.urlopen(req, timeout=10)
+    except Exception as e:
+        log(f"[LINE] 通知失敗: {e}")
 
 
 def load_state():
@@ -60,8 +79,19 @@ def main():
             "tweet_id": tweet_id,
         }
         save_state(state)
+
+        media_label = f"🖼 画像あり（{tweet_image}）" if tweet_image and not tweet_image.endswith(".mp4") else \
+                      "🎬 動画あり" if tweet_image else "📝 テキストのみ"
+        send_line(
+            f"[USJ-815 X自動投稿]\n"
+            f"✅ No.{idx+1} 投稿完了\n"
+            f"{media_label}\n"
+            f"本文: {tweet_text[:40].replace(chr(10), ' ')}…\n"
+            f"🔗 https://x.com/i/web/status/{tweet_id}"
+        )
     except Exception as e:
         log(f"[ERROR] 投稿失敗: {e}")
+        send_line(f"[USJ-815 X自動投稿]\n❌ No.{idx+1} 投稿失敗\n{e}")
         sys.exit(1)
 
     log("===== X自動投稿 END =====")
