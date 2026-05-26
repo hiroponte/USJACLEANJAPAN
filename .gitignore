@@ -1,0 +1,9 @@
+# APIキー入りのローカル実行ファイル（絶対にGitHubに上げない）
+run_x_post.bat
+
+# ログ・状態ファイル（GitHubで管理する場合は削除）
+x_post_log.txt
+
+# Python cache
+__pycache__/
+*.pyc

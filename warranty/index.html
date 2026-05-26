@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>製品保証・サポート | Daiwa Felicity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue: #2176CC;
+            --navy: #1A2744;
+            --bg-light: #F0F6FF;
+            --border: #D6E4F5;
+            --text: #1A2744;
+            --text-mid: #4A5568;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: #fff; line-height: 1.7; }
+
+        .header {
+            background: var(--navy);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-wrap { display: flex; flex-direction: column; }
+        .brand-name { color: #fff; font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.05em; }
+        .brand-sub { color: rgba(255,255,255,0.55); font-size: 0.75rem; margin-top: 2px; }
+        .header-back a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; }
+        .header-back a:hover { color: #fff; }
+
+        .support-hero {
+            background: var(--navy);
+            color: #fff;
+            text-align: center;
+            padding: 56px 24px 48px;
+        }
+        .support-hero-icon { font-size: 2.8rem; margin-bottom: 16px; color: #7BB8F0; }
+        .support-hero h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
+        .support-hero p { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto; }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+        .section-block { padding: 48px 0 0; }
+        .section-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            color: var(--blue);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .section-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; color: var(--navy); }
+
+        .warranty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .warranty-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 20px;
+        }
+        .warranty-card i { font-size: 1.5rem; color: var(--blue); margin-bottom: 10px; display: block; }
+        .warranty-card strong { display: block; font-size: 0.95rem; margin-bottom: 6px; color: var(--navy); }
+        .warranty-card p { font-size: 0.88rem; color: var(--text-mid); }
+        .warranty-note {
+            background: #FFF8E7;
+            border: 1px solid #F5D87A;
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 0.88rem;
+            color: #7A5A00;
+        }
+
+        .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+        .faq-q {
+            font-weight: 700;
+            font-size: 0.97rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .faq-q::before {
+            content: "Q";
+            background: var(--blue);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 24px; height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .faq-a { font-size: 0.9rem; color: var(--text-mid); padding-left: 34px; }
+
+        .form-section { padding: 48px 0 64px; }
+        .form-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 36px 32px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+        .form-group label span.req { color: #E53E3E; margin-left: 4px; font-size: 0.8rem; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--blue); }
+        .form-group textarea { height: 130px; resize: vertical; }
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .form-submit:hover { background: #1558A0; transform: translateY(-1px); }
+        .form-promise { text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--text-mid); }
+        .form-promise i { color: var(--blue); margin-right: 4px; }
+        .order-hint {
+            font-size: 0.82rem;
+            color: var(--blue);
+            margin-top: 7px;
+            padding: 8px 12px;
+            background: rgba(33, 118, 204, 0.09);
+            border-radius: 7px;
+            border-left: 3px solid var(--blue);
+            display: none;
+        }
+        .order-error {
+            font-size: 0.82rem;
+            color: #c53030;
+            margin-top: 7px;
+            padding: 8px 12px;
+            background: rgba(229, 62, 62, 0.07);
+            border-radius: 7px;
+            border-left: 3px solid #E53E3E;
+            display: none;
+        }
+        .form-group input.input-error { border-color: #E53E3E; }
+
+        .support-footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 24px;
+            font-size: 0.82rem;
+        }
+        .support-footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        .support-footer a:hover { color: #fff; }
+
+        @media (max-width: 600px) {
+            .support-hero h1 { font-size: 1.4rem; }
+            .form-box { padding: 24px 18px; }
+            .warranty-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-wrap">
+            <span class="brand-name">Daiwa Felicity</span>
+            <span class="brand-sub">製品保証・サポート</span>
+        </div>
+        <div class="header-back">
+            <a href="/"><i class="fas fa-arrow-left"></i> 公式サイトへ</a>
+        </div>
+    </header>
+
+    <div class="support-hero">
+        <div class="support-hero-icon"><i class="fas fa-shield-alt"></i></div>
+        <h1>製品の不具合・ご不明点は<br>こちらからご連絡ください</h1>
+        <p>通常2営業日以内にご返答いたします。<br>保証書をお手元にご用意の上、フォームをご記入ください。</p>
+    </div>
+
+    <section class="section-block">
+        <div class="container">
+            <p class="section-label">WARRANTY</p>
+            <h2 class="section-title">保証内容について</h2>
+            <div class="warranty-grid">
+                <div class="warranty-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <strong>保証期間</strong>
+                    <p>お買い上げ日より<strong>1年間</strong>のメーカー保証</p>
+                </div>
+                <div class="warranty-card">
+                    <i class="fas fa-tools"></i>
+                    <strong>保証対象</strong>
+                    <p>通常のご使用での製品の不具合・初期不良</p>
+                </div>
+                <div class="warranty-card">
+                    <i class="fas fa-file-alt"></i>
+                    <strong>手続き方法</strong>
+                    <p>下記フォームからお問い合わせ → 担当者よりご連絡</p>
+                </div>
+            </div>
+            <div class="warranty-note">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>保証対象外となる場合：</strong>落下・水濡れ・改造・誤った使用方法による故障は保証対象外となります。
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container">
+            <p class="section-label">FAQ</p>
+            <h2 class="section-title">よくあるご質問</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">電源を入れても動かない</div>
+                <p class="faq-a">①電源コードが奥まで差し込まれているか確認してください。②コンセントを別の差し込み口に変えてお試しください。改善しない場合は下記フォームよりご連絡ください。</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">異音・振動が大きくなった</div>
+                <p class="faq-a">本体が平らな床面に置かれているか確認してください。足置き部分に異物が挟まっていないかもご確認ください。それでも改善しない場合はお問い合わせください。</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">リモコンが反応しない</div>
+                <p class="faq-a">リモコンケーブルが本体にしっかり接続されているか確認してください。本体の電源ボタンで直接操作できるかもお試しください。</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">保証書を紛失してしまった</div>
+                <p class="faq-a">Amazonの購入履歴・注文確認メールでご購入日が確認できる場合は保証対応いたします。下記フォームにその旨をご記入ください。</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">対応完了までどのくらいかかりますか</div>
+                <p class="faq-a">お問い合わせから通常2営業日以内にご返答いたします。交換対応の場合は発送まで3〜5営業日を目安にお考えください。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <p class="section-label">CONTACT</p>
+            <h2 class="section-title">お問い合わせフォーム</h2>
+            <div class="form-box">
+                <form id="warranty-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="0889d2bd-52c8-4a12-9d4e-0d4573fc906a">
+                    <input type="hidden" name="subject" value="製品保証お問い合わせ">
+                    <input type="hidden" name="from_name" value="Daiwa Felicity 製品保証フォーム">
+                    <input type="hidden" name="redirect" value="https://daiwafelicity.jp/warranty/thanks.html">
+
+                    <div class="form-group">
+                        <label>お名前 <span class="req">必須</span></label>
+                        <input type="text" name="name" placeholder="山田 太郎" required>
+                    </div>
+                    <div class="form-group">
+                        <label>メールアドレス <span class="req">必須</span></label>
+                        <input type="email" name="email" placeholder="example@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>電話番号 <span class="req">必須</span></label>
+                        <input type="tel" name="phone" placeholder="例：090-1234-5678" pattern="^0[0-9\-]{9,12}$" title="ハイフンあり・なしどちらでも入力できます（例：090-1234-5678）" required>
+                    </div>
+                    <div class="form-group">
+                        <label>郵便番号 <span class="req">必須</span></label>
+                        <input type="text" name="postal_code" placeholder="例：123-4567" pattern="^\d{3}-?\d{4}$" title="郵便番号を入力してください（例：123-4567）" required>
+                    </div>
+                    <div class="form-group">
+                        <label>住所 <span class="req">必須</span></label>
+                        <input type="text" name="address" placeholder="例：東京都渋谷区○○1-2-3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="purchase_channel">ご購入先 <span class="req">必須</span></label>
+                        <select id="purchase_channel" name="purchase_channel" required onchange="updateOrderField()">
+                            <option value="">選択してください</option>
+                            <option value="amazon">Amazon</option>
+                            <option value="mercari">メルカリショップス</option>
+                            <option value="rakuten">楽天市場</option>
+                            <option value="yahoo">Yahoo!ショッピング</option>
+                            <option value="official">ダイワフェリシティ公式サイト</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_number">注文番号 <span class="req">必須</span></label>
+                        <input type="text" id="order_number" name="order_number"
+                            placeholder="まず「ご購入先」を選択してください"
+                            required oninput="validateOrderNumber()">
+                        <div class="order-hint" id="order_hint"></div>
+                        <div class="order-error" id="order_error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>不具合の内容 <span class="req">必須</span></label>
+                        <select name="issue_type" required>
+                            <option value="">選択してください</option>
+                            <option value="no_power">電源が入らない・動かない</option>
+                            <option value="abnormal_noise">異音・振動が異常</option>
+                            <option value="remote_issue">リモコンが反応しない</option>
+                            <option value="speed_issue">スピードが変わらない</option>
+                            <option value="physical_damage">外観の破損・欠品</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>詳しい状況をお書きください <span class="req">必須</span></label>
+                        <textarea name="message" placeholder="いつから・どのような症状が出ているか、できるだけ詳しくお書きください。" required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> 送信する
+                    </button>
+                    <p class="form-promise">
+                        <i class="fas fa-lock"></i> お客様の情報はサポート対応以外には使用しません
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="support-footer">
+        <p>Daiwa Felicity by <a href="/">USJACLEAN Japan</a> &nbsp;|&nbsp;
+        <a href="/">公式サイト</a> &nbsp;|&nbsp;
+        <a href="/privacy.html">プライバシーポリシー</a></p>
+        <p style="margin-top:8px;">&copy; 2026 USJACLEAN Japan Inc. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        var ORDER_CONFIG = {
+            amazon: {
+                placeholder: '例：503-1234567-8901234',
+                pattern: /^\d{3}-\d{7}-\d{7}$/,
+                hint: '形式：XXX-XXXXXXX-XXXXXXX（19文字・ハイフン込み）',
+                error: 'Amazonの注文番号はハイフン区切り19文字で入力してください（例：503-1234567-8901234）',
+                minlength: 19, maxlength: 19
+            },
+            mercari: {
+                placeholder: '取引画面に表示されている注文IDを入力',
+                pattern: /^.{1,100}$/,
+                hint: 'メルカリアプリ／ブラウザの取引詳細画面に表示されているIDをそのまま入力してください',
+                error: '注文IDを入力してください',
+                minlength: 1, maxlength: 100
+            },
+            rakuten: {
+                placeholder: '例：220811-102984-00000001',
+                pattern: /^\d{6}-\d{6}-\d{8}$/,
+                hint: '形式：YYMMDD-XXXXXX-XXXXXXXX（22文字・ハイフン込み）',
+                error: '楽天の注文番号はハイフン区切り22文字で入力してください（例：220811-102984-00000001）',
+                minlength: 22, maxlength: 22
+            },
+            yahoo: {
+                placeholder: '例：2024011234567890',
+                pattern: /^\d{10,20}$/,
+                hint: '形式：数字のみ 10〜20桁（ハイフン・記号は含めない）',
+                error: 'Yahoo!ショッピングの注文番号は数字のみ10〜20桁で入力してください',
+                minlength: 10, maxlength: 20
+            },
+            official: {
+                placeholder: '例：#1001',
+                pattern: /^#\d{4}$/,
+                hint: '形式：#から始まる4桁の数字（全5文字・例：#1001）',
+                error: '公式サイトの注文番号は#から始まる5文字です（例：#1001）',
+                minlength: 5, maxlength: 5
+            }
+        };
+
+        function updateOrderField() {
+            var channel = document.getElementById('purchase_channel').value;
+            var orderInput = document.getElementById('order_number');
+            var hintDiv = document.getElementById('order_hint');
+            var errorDiv = document.getElementById('order_error');
+
+            orderInput.value = '';
+            orderInput.classList.remove('input-error');
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+            orderInput.setCustomValidity('');
+
+            var config = ORDER_CONFIG[channel];
+            if (config) {
+                orderInput.placeholder = config.placeholder;
+                orderInput.minLength = config.minlength;
+                orderInput.maxLength = config.maxlength;
+                hintDiv.textContent = config.hint;
+                hintDiv.style.display = 'block';
+            } else {
+                orderInput.placeholder = 'まず「ご購入先」を選択してください';
+                orderInput.removeAttribute('minlength');
+                orderInput.removeAttribute('maxlength');
+                hintDiv.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('order_number').addEventListener('paste', function(e) {
+                e.preventDefault();
+                var pasted = (e.clipboardData || window.clipboardData).getData('text').trim();
+                var max = this.maxLength > 0 ? this.maxLength : pasted.length;
+                this.value = pasted.slice(0, max);
+                validateOrderNumber();
+            });
+        });
+
+        function validateOrderNumber() {
+            var channel = document.getElementById('purchase_channel').value;
+            var orderInput = document.getElementById('order_number');
+            var errorDiv = document.getElementById('order_error');
+            var val = orderInput.value.trim();
+
+            var config = ORDER_CONFIG[channel];
+            if (!val || !config) {
+                orderInput.setCustomValidity('');
+                orderInput.classList.remove('input-error');
+                errorDiv.style.display = 'none';
+                return;
+            }
+
+            if (config.pattern.test(val)) {
+                orderInput.setCustomValidity('');
+                orderInput.classList.remove('input-error');
+                errorDiv.style.display = 'none';
+            } else {
+                orderInput.setCustomValidity(config.error);
+                orderInput.classList.add('input-error');
+                errorDiv.textContent = '⚠ ' + config.error;
+                errorDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

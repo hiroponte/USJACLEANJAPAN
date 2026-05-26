@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects
+# daiwafelicity.jp をカスタムドメインとして接続すれば /warranty は自動で動く
+/lp  /  301
+/lp/ /  301
+
+# ブログはWordPress（blog.daiwafelicity.jp）に統一
+/blog        https://blog.daiwafelicity.jp  301
+/blog.html   https://blog.daiwafelicity.jp  301
