@@ -28,21 +28,8 @@ def log(msg):
 
 
 def send_line(msg: str):
-    token = os.getenv("LINE_TOKEN", "")
-    user_id = os.getenv("LINE_USER_ID", "")
-    if not token or not user_id:
-        return
-    try:
-        body = json.dumps({"to": user_id, "messages": [{"type": "text", "text": msg}]}).encode("utf-8")
-        req = urllib.request.Request(
-            "https://api.line.me/v2/bot/message/push",
-            data=body,
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {token}"},
-            method="POST",
-        )
-        urllib.request.urlopen(req, timeout=10)
-    except Exception as e:
-        log(f"[LINE] 通知失敗: {e}")
+    # LINE通知は停止中（2026-07-03 オーナー指示）
+    return
 
 
 def load_state():
